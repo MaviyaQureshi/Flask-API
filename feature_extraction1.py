@@ -15,10 +15,8 @@ def check_dns_records(domain):
 
         # If there are any records, print a message
         if result:
-            print(f"DNS records found for {domain}.")
             return 1
         else:
-            print(f"No DNS records found for {domain}.")
             return 0
     except dns.resolver.NXDOMAIN:
         print(f"{domain} does not exist.")
@@ -160,8 +158,6 @@ def extract_features(url):
     # Parse the URL
     parsed_url = urlparse(url)
     domain = parsed_url.netloc
-    print(parsed_url.query)
-    print(parsed_url.fragment)
     try:
         response = requests.get(url)
     except requests.exceptions.RequestException as e:

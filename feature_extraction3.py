@@ -335,10 +335,8 @@ def get_domain_resolution_info(domain):
         ip_addresses = socket.gethostbyname_ex(domain)[2]
         qty_ip_resolved = len(ip_addresses)
         nameservers = whois.whois(domain).get("name_servers", [])
-        print("Name servers =", nameservers)
         qty_nameservers = len(nameservers)
         mx_servers = whois.whois(domain).get("mail_servers", [])
-        print("Mx servers =", mx_servers)
         qty_mx_servers = len(mx_servers)
         return qty_ip_resolved, qty_nameservers, qty_mx_servers
     except (socket.error, whois.parser.PywhoisError):
@@ -399,9 +397,7 @@ def get_google_index_info(url, parsed_url):
 
         items = response.get("items", [])
         url_google_index = any(item["link"] == url for item in items)
-        print("Response url index =", url_google_index)
         domain_google_index = any(parsed_url.netloc in item["link"] for item in items)
-        print("Response domain index =", domain_google_index)
 
         return int(url_google_index), int(domain_google_index)
     except Exception as e:

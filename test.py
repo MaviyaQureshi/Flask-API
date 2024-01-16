@@ -122,7 +122,6 @@ def classification():
             raise ValueError("Missing 'url' key in JSON data.")
 
         url = request_data["url"]
-        print("Received URL:", url)
 
         # Perform classification using the feature extraction logic
         prediction = classify_features1(url)
@@ -148,7 +147,6 @@ def classify():
             raise ValueError("Missing 'url' key in JSON data.")
 
         url = request_data["url"]
-        print("Received URL:", url)
 
         # Perform classification using the feature extraction logic
         prediction = classify_features2(url)
@@ -174,7 +172,6 @@ def classify2():
             raise ValueError("Missing 'url' key in JSON data.")
 
         url = request_data["url"]
-        print("Received URL:", url)
 
         # Perform classification using the feature extraction logic
         prediction = classify_features3(url)
@@ -190,4 +187,4 @@ def classify2():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=False)
+    app.run(debug=True)
