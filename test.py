@@ -30,19 +30,19 @@ def classify_features1(features):
 
 
 def classify_features2(features):
-    with open("./Models/set2/XGBClassifier.pkl", "rb") as model_file:
+    with open("./Models/Cleaned/XGBClassifier_1.pkl", "rb") as model_file:
         model1 = pickle.load(model_file)
-    with open("./Models/set2/LRClassifier.pkl", "rb") as model_file:
+    with open("./Models/Cleaned/LRClassifier_1.pkl", "rb") as model_file:
         model2 = pickle.load(model_file)
-    with open("./Models/set2/DTCClassifier.pkl", "rb") as model_file:
+    with open("./Models/Cleaned/DTCClassifier_1.pkl", "rb") as model_file:
         model3 = pickle.load(model_file)
-    with open("./Models/set2/GNBClassifier.pkl", "rb") as model_file:
+    with open("./Models/Cleaned/GNBClassifier_1.pkl", "rb") as model_file:
         model4 = pickle.load(model_file)
-    with open("./Models/set2/RFCClassifier.pkl", "rb") as model_file:
+    with open("./Models/Cleaned/RFCClassifier_1.pkl", "rb") as model_file:
         model5 = pickle.load(model_file)
-    with open("./Models/set2/SVCClassifier.pkl", "rb") as model_file:
+    with open("./Models/Cleaned/SVCClassifier_1.pkl", "rb") as model_file:
         model6 = pickle.load(model_file)
-    with open("./Models/set2/ABCClassifier.pkl", "rb") as model_file:
+    with open("./Models/Cleaned/ABCClassifier_1.pkl", "rb") as model_file:
         model7 = pickle.load(model_file)
 
     # Call the feature extraction function with the provided features
@@ -71,20 +71,20 @@ def classify_features2(features):
 
 
 def classify_features3(features):
-    with open("./Models/set3/XGBClassifier_copy.pkl", "rb") as model_file:
+    with open("./Models/Cleaned/XGBClassifier_copy.pkl", "rb") as model_file:
         model1 = pickle.load(model_file)
-    with open("./Models/set3/LRClassifier_copy.pkl", "rb") as model_file:
+    with open("./Models/Cleaned/LRClassifier_copy.pkl", "rb") as model_file:
         model2 = pickle.load(model_file)
-    with open("./Models/set3/DTCClassifier_copy.pkl", "rb") as model_file:
+    with open("./Models/Cleaned/DTCClassifier_copy.pkl", "rb") as model_file:
         model3 = pickle.load(model_file)
-    with open("./Models/set3/GNBClassifier_copy.pkl", "rb") as model_file:
+    with open("./Models/Cleaned/GNBClassifier_copy.pkl", "rb") as model_file:
         model4 = pickle.load(model_file)
-    with open("./Models/set3/RFCClassifier_copy.pkl", "rb") as model_file:
+    with open("./Models/Cleaned/RFCClassifier_copy.pkl", "rb") as model_file:
         model5 = pickle.load(model_file)
-    with open("./Models/set3/SVCClassifier_copy.pkl", "rb") as model_file:
+    with open("./Models/Cleaned/SVCClassifier_copy.pkl", "rb") as model_file:
         model6 = pickle.load(model_file)
-    with open("./Models/set3/MLPClassifier_copy.pkl", "rb") as model_file:
-        model7 = pickle.load(model_file)
+    # with open("./Models/Cleaned/MLPClassifier_copy.pkl", "rb") as model_file:
+    #     model7 = pickle.load(model_file)
 
     # Call the feature extraction function with the provided features
     extracted_features = extractfeatures3(features)
@@ -98,7 +98,7 @@ def classify_features3(features):
     result4 = model4.predict(features_array)
     result5 = model5.predict(features_array)
     result6 = model6.predict(features_array)
-    result7 = model7.predict(features_array)
+    # result7 = model7.predict(features_array)
 
     return (
         int(result1[0]),
@@ -107,7 +107,7 @@ def classify_features3(features):
         int(result4[0]),
         int(result5[0]),
         int(result6[0]),
-        int(result7[0]),
+        # int(result7[0]),
     )
 
 
@@ -161,29 +161,29 @@ def classify():
         return jsonify({"error": str(e)})
 
 
-@app.route("/classifi", methods=["POST"])
-def classify2():
-    try:
-        # Receive JSON input
-        request_data = request.get_json()
+# @app.route("/classifi", methods=["POST"])
+# def classify2():
+#     try:
+#         # Receive JSON input
+#         request_data = request.get_json()
 
-        # Ensure "url" key is present in the JSON data
-        if "url" not in request_data:
-            raise ValueError("Missing 'url' key in JSON data.")
+#         # Ensure "url" key is present in the JSON data
+#         if "url" not in request_data:
+#             raise ValueError("Missing 'url' key in JSON data.")
 
-        url = request_data["url"]
+#         url = request_data["url"]
 
-        # Perform classification using the feature extraction logic
-        prediction = classify_features3(url)
+#         # Perform classification using the feature extraction logic
+#         prediction = classify_features3(url)
 
-        if prediction is not None:
-            # Return the result as JSON
-            return jsonify({"prediction": prediction})
-        else:
-            return jsonify({"error": "Failed to classify."})
+#         if prediction is not None:
+#             # Return the result as JSON
+#             return jsonify({"prediction": prediction})
+#         else:
+#             return jsonify({"error": "Failed to classify."})
 
-    except Exception as e:
-        return jsonify({"error": str(e)})
+#     except Exception as e:
+#         return jsonify({"error": str(e)})
 
 
 if __name__ == "__main__":

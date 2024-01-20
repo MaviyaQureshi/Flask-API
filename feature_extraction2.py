@@ -312,7 +312,7 @@ def server_client_relation(url):
 def is_email_in_url(url):
     email_pattern = re.compile(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b")
     value = bool(re.search(email_pattern, url))
-    return 1 if value else 0
+    return 0 if value else 1
 
 
 def get_time_response(url):
@@ -339,7 +339,7 @@ def get_asn_for_ip(ip):
     try:
         asn_info = requests.get(f"https://ipinfo.io/{ip}/json").json()
         asn = asn_info.get("asn")
-        return 0 if asn == None else 1
+        return 1 if asn == None else 0
     except requests.RequestException:
         pass
     return -1
@@ -431,7 +431,7 @@ def has_valid_ssl_certificate(domain):
         # Use UTC time for comparison
         current_datetime = datetime.utcnow()
 
-        return 1 if expiration_datetime > current_datetime else 0
+        return 0 if expiration_datetime > current_datetime else 1
     except Exception as e:
         print(f"Error: {e}")
         pass
